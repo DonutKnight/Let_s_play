@@ -356,6 +356,7 @@ while True:
         if ev.type == pygame.QUIT: pygame.quit(); exit()
         if ev.type == pygame.KEYDOWN and ev.key in [pygame.K_SPACE, pygame.K_UP]: player.handle_jump()
 
+
     if group:
         moving_platforms.update()
         moving_saws.update()

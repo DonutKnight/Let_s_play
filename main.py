@@ -6,6 +6,7 @@ import lewelOne
 import lewelTwo
 import lewelThree
 
+
 SCREEN_WIDTH, SCREEN_HEIGHT = 600, 340
 
 # Globalne zmienne silnika
@@ -19,6 +20,7 @@ triggers: list = []
 moving_platforms = pygame.sprite.Group()
 moving_saws = pygame.sprite.Group()
 falling_stones = pygame.sprite.Group()
+<<<<<<< HEAD
 boss_group = pygame.sprite.Group()
 iron_heads = pygame.sprite.Group()
 
@@ -170,14 +172,43 @@ class MovingSaw(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(obj.x + obj.width // 2, obj.y + obj.height // 2))
         self.pos = pygame.math.Vector2(self.rect.topleft)
         self.start_pos = pygame.math.Vector2(self.rect.topleft)
+=======
+class MovingSaw(pygame.sprite.Sprite):
+    def __init__(self, obj):
+        super().__init__()
+
+        try:
+            sprite_sheet = pygame.image.load("assets/Traps/Saw/On (38x38).png").convert_alpha()
+            self.frames = []
+            for i in range(8):
+                frame = pygame.Surface.subsurface(sprite_sheet, (i * 38, 0, 38, 38))
+                self.frames.append(frame)
+        except Exception as e:
+            print(f"BŁĄD: Nie znaleziono pliku piły! {e}")
+            self.frames = [pygame.Surface((38, 38))]
+            self.frames[0].fill((255, 0, 0))
+
+        self.image = self.frames[0]
+        # Ustawiamy ŚRODEK piły na pozycji obiektu z Tiled (używamy szerokości obiektu jako kotwicy)
+        self.rect = self.image.get_rect(center=(obj.x + obj.width // 2, obj.y + obj.height // 2))
+
+        self.pos = pygame.math.Vector2(self.rect.topleft)
+        self.start_pos = pygame.math.Vector2(self.rect.topleft)
+
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
         self.axis = obj.properties.get('axis', 'y')
         self.dist = float(obj.properties.get('dist', 100))
         self.speed = float(obj.properties.get('speed', 2.0))
         self.anim_speed = float(obj.properties.get('anim_speed', 0.2))
+<<<<<<< HEAD
+=======
+
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
         self.direction = 1
         self.frame_index = 0.0
 
     def update(self, *args, **kwargs):
+<<<<<<< HEAD
         self.frame_index += self.anim_speed
         if self.frame_index >= len(self.frames): self.frame_index = 0
         self.image = self.frames[int(self.frame_index)]
@@ -187,6 +218,24 @@ class MovingSaw(pygame.sprite.Sprite):
         else:
             self.pos.x += self.speed * self.direction
             if abs(self.pos.x - self.start_pos.x) >= abs(self.dist): self.direction *= -1
+=======
+        # Animacja kręcenia się
+        self.frame_index += self.anim_speed
+        if self.frame_index >= len(self.frames):
+            self.frame_index = 0
+        self.image = self.frames[int(self.frame_index)]
+
+        # Ruch wahadłowy (Góra/Dół lub Lewo/Prawo)
+        if self.axis == 'y':
+            self.pos.y += self.speed * self.direction
+            if abs(self.pos.y - self.start_pos.y) >= abs(self.dist):
+                self.direction *= -1
+        else:
+            self.pos.x += self.speed * self.direction
+            if abs(self.pos.x - self.start_pos.x) >= abs(self.dist):
+                self.direction *= -1
+
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
         self.rect.topleft = (round(self.pos.x), round(self.pos.y))
 
 
@@ -262,7 +311,13 @@ class Player(pygame.sprite.Sprite):
         self.is_dead = False
 
     def get_input(self):
+<<<<<<< HEAD
         if self.is_dead: self.velocity.x = 0; return
+=======
+        if self.is_dead:
+            self.velocity.x = 0
+            return
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
         keys = pygame.key.get_pressed()
         self.velocity.x = -4 if keys[pygame.K_LEFT] else 4 if keys[pygame.K_RIGHT] else 0
         if self.velocity.x < 0:
@@ -301,7 +356,12 @@ def trigger_death():
     death_sfx.play()
     group.draw(screen)
     pygame.display.flip()
+<<<<<<< HEAD
     pygame.time.delay(int(death_sfx.get_length() * 1000))
+=======
+    waiting_time = int(death_sfx.get_length() * 1000)
+    pygame.time.delay(waiting_time)
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
     player.is_dead = False
     load_level(current_level_module, spawn_name=last_used_spawn)
 
@@ -314,15 +374,22 @@ def load_level(level_module: Any, spawn_name: str = "PlayerSpawn"):
     moving_platforms.empty()
     moving_saws.empty()
     falling_stones.empty()
+<<<<<<< HEAD
     boss_group.empty()
     iron_heads.empty()
+=======
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
 
     tmx_data = pytmx.util_pygame.load_pygame(level_module.MAP_PATH)
     map_data = pyscroll.data.TiledMapData(tmx_data)
     map_layer = pyscroll.BufferedRenderer(map_data, (SCREEN_WIDTH, SCREEN_HEIGHT), clamp_camera=True)
     group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
 
+<<<<<<< HEAD
     possible_names = [spawn_name, "SpawnPlayer2", "PlayerSpawn", "FinalSpawn"]
+=======
+    possible_names = [spawn_name, "SpawnPlayer2", "PlayerSpawn", "start"]
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
     found_pos = None
     for name in possible_names:
         for obj in tmx_data.objects:
@@ -366,6 +433,7 @@ def load_level(level_module: Any, spawn_name: str = "PlayerSpawn"):
                     s = FallingStone(obj)
                     falling_stones.add(s)
                     group.add(s)
+<<<<<<< HEAD
                 elif obj.name == "BossAnchor":
                     ih = IronHead(obj)
                     iron_heads.add(ih)
@@ -380,6 +448,15 @@ def load_level(level_module: Any, spawn_name: str = "PlayerSpawn"):
                 elif obj_tp in ["spikes", "trap"]:
                     traps.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
     group.add(player)
+=======
+                elif obj_tp == "trigger":
+                    triggers.append({'rect': pygame.Rect(obj.x, obj.y, obj.width, obj.height), 'name': obj.name})
+                elif obj_tp in ["spikes", "trap"]:
+                    traps.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
+
+    group.add(player)
+    group.center(player.rect.center)
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
 
 
 def check_collisions():
@@ -404,7 +481,14 @@ def check_collisions():
     player.position.y += player.velocity.y
     player.rect.y = round(player.position.y)
     player.on_ground = False
+<<<<<<< HEAD
     if player.rect.top > mh + 50: trigger_death(); return
+=======
+
+    if player.rect.top > mh + 50:
+        trigger_death()
+        return
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
 
     for plat in moving_platforms:
         foot = player.rect.copy()
@@ -424,6 +508,7 @@ def check_collisions():
     player.position.y = float(player.rect.y)
 
     death_hit = player.rect.inflate(-12, -12)
+<<<<<<< HEAD
     for s in moving_saws:
         if death_hit.colliderect(s.rect): trigger_death(); return
     for t in traps:
@@ -438,11 +523,25 @@ def check_collisions():
                 b.hit()
                 ih.is_falling = False
                 ih.freeze_timer = 15
+=======
+    # Kolizja z piłami
+    for s in moving_saws:
+        if death_hit.colliderect(s.rect):
+            trigger_death()
+            return
+
+    # Kolizja z pułapkami statycznymi
+    for t in traps:
+        if death_hit.colliderect(t):
+            trigger_death()
+            return
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
 
     for trig in triggers:
         if player.rect.colliderect(trig['rect']):
             for s in falling_stones:
                 if s.activated_by == trig['name']: s.is_falling = True
+<<<<<<< HEAD
             for ih in iron_heads:
                 if ih.tid == trig['tid'] and trig['tid'] != '' and not ih.is_triggered:
                     ih.is_falling = True
@@ -450,14 +549,23 @@ def check_collisions():
 
     for s in falling_stones:
         if player.rect.colliderect(s.rect) and s.instant_death: trigger_death(); return
+=======
+    for s in falling_stones:
+        if player.rect.colliderect(s.rect) and s.instant_death:
+            trigger_death()
+            return
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
 
     for e in exits:
         if player.rect.colliderect(e['rect']):
             if e['name'] == "wyjscie_level1":
                 load_level(lewelTwo, spawn_name="SpawnPlayer2")
             elif e['name'] == "wyjscie_level2":
+<<<<<<< HEAD
                 load_level(lewelThree, spawn_name="FinalSpawn")
             elif e['name'] == "wyjscie_level3":
+=======
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
                 load_level(lewelOne, spawn_name="PlayerSpawn")
             return
 
@@ -465,6 +573,7 @@ def check_collisions():
 # --- START ---
 pygame.init()
 pygame.mixer.init()
+<<<<<<< HEAD
 jump_sfx = pygame.mixer.Sound("assets/Sounds/jump.wav")
 death_sfx = pygame.mixer.Sound("assets/Sounds/death.mp3")
 boss_hit_sfx = pygame.mixer.Sound("assets/Sounds/hit.mp3")
@@ -475,6 +584,15 @@ jump_sfx.set_volume(0.3)
 death_sfx.set_volume(0.7)
 boss_hit_sfx.set_volume(0.6)
 boss_death_sfx.set_volume(0.8)
+=======
+
+jump_sfx = pygame.mixer.Sound("assets/Sounds/jump.wav")
+death_sfx = pygame.mixer.Sound("assets/Sounds/death.mp3")
+pygame.mixer.music.load("assets/Sounds/music.mp3")
+jump_sfx.set_volume(0.3)
+death_sfx.set_volume(0.7)
+pygame.mixer.music.set_volume(1)
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
 pygame.mixer.music.play(-1)
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -491,8 +609,11 @@ while True:
         moving_platforms.update()
         moving_saws.update()
         falling_stones.update()
+<<<<<<< HEAD
         boss_group.update()
         iron_heads.update()
+=======
+>>>>>>> daeb1a6 (Dodanie plansz i mechaniki gry)
         group.update()
         check_collisions()
         group.center(player.rect.center)

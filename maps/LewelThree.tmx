@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.12.0" orientation="orthogonal" renderorder="right-down" width="45" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="17">
  <tileset firstgid="1" name="Terrain (16x16)" tilewidth="16" tileheight="16" tilecount="242" columns="22">
-  <image source="../../../Desktop/UBB.Rok3/LevelOne/assets/Terrain/Terrain (16x16).png" trans="acacac" width="352" height="176"/>
+  <image source="../assets/Terrain/Terrain (16x16).png" trans="acacac" width="352" height="176"/>
  </tileset>
  <tileset firstgid="243" name="Chain" tilewidth="8" tileheight="8" tilecount="1" columns="1">
-  <image source="../../../Desktop/UBB.Rok3/LevelOne/assets/Traps/Spiked Ball/Chain.png" trans="acacac" width="8" height="8"/>
+  <image source="../assets/Traps/Spiked Ball/Chain.png" trans="acacac" width="8" height="8"/>
  </tileset>
  <tileset firstgid="244" name="Idle" tilewidth="16" tileheight="16" tilecount="4" columns="2">
-  <image source="../../../Desktop/UBB.Rok3/LevelOne/assets/Traps/Rock Head/Idle.png" trans="acacac" width="42" height="42"/>
+  <image source="../assets/Traps/Rock Head/Idle.png" trans="acacac" width="42" height="42"/>
  </tileset>
  <tileset firstgid="248" name="Idle" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="../../../Desktop/UBB.Rok3/LevelOne/assets/Traps/Rock Head/Idle.png" trans="acacac" width="42" height="42"/>
+  <image source="../assets/Traps/Rock Head/Idle.png" trans="acacac" width="42" height="42"/>
  </tileset>
  <tileset firstgid="249" name="On (16x32)" tilewidth="16" tileheight="16" tilecount="6" columns="3">
-  <image source="../../../Desktop/UBB.Rok3/LevelOne/assets/Traps/Fire/On (16x32).png" trans="acacac" width="48" height="32"/>
+  <image source="../assets/Traps/Fire/On (16x32).png" trans="acacac" width="48" height="32"/>
  </tileset>
  <layer id="1" name="tlo_glowne" width="45" height="20" locked="1">
   <data encoding="csv">

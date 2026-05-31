@@ -53,10 +53,10 @@
  </tileset>
  <tileset firstgid="34147" name="Off" tilewidth="16" tileheight="16" tilecount="4" columns="2">
   <image source="../assets/Traps/Saw/Off.png" trans="acacac" width="38" height="38"/>
-  <image source="../../../Desktop/UBB.Rok3/LevelOne/assets/Traps/Saw/On (38x38).png" trans="acacac" width="304" height="38"/>
+  <image source="../assets/Traps/Saw/On.png" trans="acacac" width="304" height="38"/>
  </tileset>
  <tileset firstgid="34147" name="Off" tilewidth="16" tileheight="16" tilecount="4" columns="2">
-  <image source="../../../Desktop/UBB.Rok3/LevelOne/assets/Traps/Saw/Off.png" trans="acacac" width="38" height="38"/>
+  <image source="../assets/Traps/Saw/Off.png" trans="acacac" width="38" height="38"/>
   <image source="../assets/Traps/Saw/On (38x38).png" trans="acacac" width="304" height="38"/>
  </tileset>
  <tileset firstgid="34147" name="Off" tilewidth="16" tileheight="16" tilecount="4" columns="2">

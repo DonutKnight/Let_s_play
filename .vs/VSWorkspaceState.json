@@ -1,14 +1,9 @@
 {
   "ExpandedNodes": [
-<<<<<<< HEAD
     "",
-    "\\assets"
+    "\\maps",
+    "\\tests"
   ],
-  "SelectedNode": "\\.gitignore",
-=======
-    ""
-  ],
-  "SelectedNode": "\\C:\\Users\\delwa\\Source\\Repos\\Let_s_play",
->>>>>>> 40077c5 (1)
+  "SelectedNode": "\\main.py",
   "PreviewInSolutionExplorer": false
 }

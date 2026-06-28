@@ -1,0 +1,4 @@
+pygame-ce
+pytmx
+pyscroll
+pytest
